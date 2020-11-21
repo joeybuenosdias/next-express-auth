@@ -1,9 +1,16 @@
 export default function LoginForm() {
-    return (
-        <form>
-            <input />
-            <input />
-            <button>Submit</button>
-        </form>
-    )
+	return (
+		<form>
+			<input />
+			<Hello />
+		</form>
+	);
+}
+
+function Hello() {
+	return (
+		<div>
+			hello
+		</div>
+	);
 }
