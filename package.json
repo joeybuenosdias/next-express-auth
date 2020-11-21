@@ -2,12 +2,12 @@
   "name": "next-express-auth",
   "version": "1.0.0",
   "description": "Nextjs/Express Authentication App",
-  "main": "server.js",
+  "main": "server/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon server.js",
+    "dev": "NODE_ENV=development nodemon server/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
