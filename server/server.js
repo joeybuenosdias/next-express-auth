@@ -16,6 +16,7 @@ app.prepare().then(() => {
 	const server = express();
 
 	server.use(express.json());
+	server.use(express.urlencoded({ extended: true }));
 
 	server.get('/api/user', (req, res) => {
 		console.log('req.headers', req.headers);
@@ -27,6 +28,10 @@ app.prepare().then(() => {
 	 */
 	server.post('/api/login', (req, res) => {
 		console.log('req.body', req.body);
+		const { email, password } = req.body;
+		const matchedUser = users.find((user) => user.email === email);
+		console.log('MATCHED USER', matchedUser);
+		res.send({ matchedUser });
 	});
 
 	server.all('*', (req, res) => handler(req, res));

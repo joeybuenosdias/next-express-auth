@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
+import { AppProvider } from '@components';
 
-export default function Dashboard({ user }) {
-	console.log('user', user);
-
+export default function Dashboard(props) {
 	return (
-		<div>
+		<AppProvider value={props}>
 			Dashboard
-		</div>
+		</AppProvider>
 	);
 }
 
