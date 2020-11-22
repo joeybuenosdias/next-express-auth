@@ -1,16 +1,17 @@
 export default function LoginForm() {
+	function handleLogin() {
+		fetch('http://localhost:3000/api/login', {
+			method: 'post',
+			body: {
+				email: 'joey@email.com',
+				password: 'sookie',
+			},
+		});
+	}
 	return (
-		<form>
+		<form onSubmit={(e) => e.preventDefault()}>
 			<input />
-			<Hello />
+			<button type="submit" onClick={handleLogin}>Submit</button>
 		</form>
-	);
-}
-
-function Hello() {
-	return (
-		<div>
-			hello
-		</div>
 	);
 }
