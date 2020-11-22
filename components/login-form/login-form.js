@@ -1,18 +1,18 @@
+import axios from 'axios';
+
 export default function LoginForm() {
-	const postBody = JSON.stringify({
-		email: 'j@email.com',
-		password: 'password0',
-	});
+	const email = 'j@email.com';
+	const password = 'password0';
+
 	function handleLogin() {
-		fetch('http://localhost:3000/api/login', {
-			method: 'post',
-			body: postBody,
-		}).then((res) => {
-			console.log('res', res);
-		}).catch((err) => {
-			console.log('ERROR', err);
-		});
+		axios.post('http://localhost:3000/api/login', { email, password })
+			.then((res) => {
+				console.log('res', res);
+			}).catch((err) => {
+				console.log('ERROR', err);
+			});
 	}
+
 	return (
 		<form onSubmit={(e) => e.preventDefault()}>
 			<input />
