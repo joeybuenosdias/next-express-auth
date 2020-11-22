@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const next = require('next');
 const auth = require('./routes/auth');
+const apiGateway = require('./routes/api/api');
 
 const PORT = parseInt(process.env.PORT, 10) || 8000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -18,11 +19,7 @@ app.prepare().then(() => {
 
 	/** routes */
 	server.use('/auth', auth);
-
-	server.get('/api/user', (req, res) => {
-		// console.log('req.headers', req.headers);
-		res.send({ user: 123, name: 'Sookie' });
-	});
+	server.use('/api', apiGateway);
 
 	server.all('*', (req, res) => handler(req, res));
 

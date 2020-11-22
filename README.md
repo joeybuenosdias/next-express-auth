@@ -18,3 +18,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 ```
 
+# Routes
+/auth/login - logs user in
+/api/user - gets active user
+

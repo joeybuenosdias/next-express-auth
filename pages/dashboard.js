@@ -37,6 +37,7 @@ export async function fetchUser(url) {
 
 export async function getServerSideProps() {
 	const { user } = await fetchUser('http://localhost:3000/api/user');
+	console.log('user', user);
 	return {
 		props: { user },
 	};
