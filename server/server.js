@@ -8,6 +8,10 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handler = app.getRequestHandler();
 
+const users = require('./db/users');
+
+console.log(users);
+
 app.prepare().then(() => {
 	const server = express();
 
@@ -18,8 +22,11 @@ app.prepare().then(() => {
 		res.send({ user: 123, name: 'Sookie' });
 	});
 
+	/**
+	 * match username & password
+	 */
 	server.post('/api/login', (req, res) => {
-		app.render(req, res);
+		console.log('req.body', req.body);
 	});
 
 	server.all('*', (req, res) => handler(req, res));
