@@ -5,7 +5,7 @@ export default function LoginForm() {
 	const password = 'password0';
 
 	function handleLogin() {
-		axios.post('http://localhost:3000/api/login', { email, password })
+		axios.post('http://localhost:3000/auth/login', { email, password })
 			.then((res) => {
 				console.log('res', res);
 			}).catch((err) => {
