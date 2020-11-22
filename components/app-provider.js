@@ -15,7 +15,7 @@ export default function AppProvider({ value, children }) {
 
 AppProvider.propTypes = {
 	// eslint-disable-next-line react/forbid-prop-types
-	children: PropTypes.object.isRequired,
+	children: PropTypes.node.isRequired,
 	// eslint-disable-next-line react/forbid-prop-types
 	value: PropTypes.object.isRequired,
 };
