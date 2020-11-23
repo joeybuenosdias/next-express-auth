@@ -13,12 +13,12 @@ router.post('/login', (req, res) => {
 			message: 'Incorrect Email or Password. Please Try Again.',
 		});
 	} else {
-		const accessToken = jwt.sign({ matchedUser }, process.env.ACCESS_TOKEN_SECRET);
+		const accessToken = jwt.sign({ email: matchedUser.email }, process.env.ACCESS_TOKEN_SECRET);
 		res.cookie('accessToken', accessToken, {
-			httpOnly: true,
+			httpOnly: false,
 			secure: process.env.NODE_ENV === 'production',
 		});
-		res.send({ accessToken, user: matchedUser });
+		res.send({ user: matchedUser });
 	}
 });
 

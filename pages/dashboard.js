@@ -1,27 +1,14 @@
-import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+// import PropTypes from 'prop-types';
 
-export default function Dashboard() {
-	return (
-		<div>
-			Dashboard
-		</div>
-	);
-}
-
-Dashboard.propTypes = {
-	user: PropTypes.shape({
-		id: PropTypes.number,
-		name: PropTypes.string,
-	}).isRequired,
-};
-
-export async function fetchUser(url) {
+export async function fetchUser(url, cookies) {
+	const { accessToken = '' } = cookies;
 	let user;
 	try {
 		const res = await fetch(url, {
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer 0987654321cookiemonster',
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		const resData = await res.json();
@@ -33,11 +20,24 @@ export async function fetchUser(url) {
 
 	return { user };
 }
+export default function Dashboard() {
+	useEffect(() => {
+		const cookiePairs = document.cookie.split(';');
+		const cookieObj = cookiePairs.reduce((prev, curr) => {
+			const [key, value] = curr.split('=');
 
-export async function getServerSideProps() {
-	const { user } = await fetchUser('http://localhost:3000/api/user');
-	console.log('user', user);
-	return {
-		props: { user },
-	};
+			return {
+				...prev,
+				[key.trim()]: value,
+			};
+		}, {});
+		console.log('cookieObj', cookieObj);
+
+		fetchUser('http://localhost:3000/api/user', cookieObj);
+	}, []);
+	return (
+		<div>
+			Dashboard
+		</div>
+	);
 }
