@@ -14,7 +14,10 @@ router.post('/login', (req, res) => {
 		});
 	} else {
 		const accessToken = jwt.sign({ matchedUser }, process.env.ACCESS_TOKEN_SECRET);
-		res.cookie('accessToken', accessToken);
+		res.cookie('accessToken', accessToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+		});
 		res.send({ accessToken, user: matchedUser });
 	}
 });
