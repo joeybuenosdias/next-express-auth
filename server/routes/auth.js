@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const users = require('../db/users');
 
 const router = express.Router();
@@ -6,8 +7,16 @@ const router = express.Router();
 router.post('/login', (req, res) => {
 	const { email } = req.body;
 	const matchedUser = users.find((user) => user.email === email);
-	/** after successful match, add token to cookie and send to client */
-	res.send({ matchedUser });
+
+	if (!matchedUser) {
+		res.status(500).send({
+			message: 'Incorrect Email or Password. Please Try Again.',
+		});
+	} else {
+		const accessToken = jwt.sign({ matchedUser }, process.env.ACCESS_TOKEN_SECRET);
+		res.cookie('accessToken', accessToken);
+		res.send({ accessToken, user: matchedUser });
+	}
 });
 
 module.exports = router;
