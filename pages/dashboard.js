@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import { AppProvider } from '@components';
-
-export default function Dashboard(props) {
+// import { AppProvider } from '@components';
+import { useAppContext } from '@components';
+export default function Dashboard() {
+	const { user } = useAppContext();
+	console.log('user', user);
 	return (
-		<AppProvider value={props}>
+		<div>
 			Dashboard
-		</AppProvider>
+		</div>
 	);
 }
 
