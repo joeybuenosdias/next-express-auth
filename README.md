@@ -1,3 +1,6 @@
+# JSON Web Tokens
+Best video ever -> https://www.youtube.com/watch?v=7Q17ubqLfaM
+
 # set up linter for project
 To begin a basic set up
 `./node_modules/.bin/eslint --init`
